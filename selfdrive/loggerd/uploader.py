@@ -257,9 +257,8 @@ def uploader_fn(exit_event):
       continue
 
     good_internet = network_type in [NetworkType.wifi, NetworkType.ethernet]
-    allow_raw_upload = params.get_bool("UploadRaw")
 
-    d = uploader.next_file_to_upload(with_raw=allow_raw_upload and good_internet and offroad)
+    d = uploader.next_file_to_upload(with_raw=good_internet and offroad)
     if d is None:  # Nothing to upload
       if allow_sleep:
         time.sleep(60 if offroad else 5)
